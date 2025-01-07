@@ -1,5 +1,5 @@
 import time
-from collections import Counter
+
 
 phones = [{"brand":"Samsung","model":"Samsung A777","date":2008},
 {"brand":"Huawei","model":"Huawei MediaPad T1 10","date":2015},
@@ -1004,23 +1004,29 @@ phones = [{"brand":"Samsung","model":"Samsung A777","date":2008},
 
 start_time = time.time()
 
-brand_counts = Counter(phone["brand"] for phone in phones)
-
-year_counts = Counter(phone["date"] for phone in phones)
+list_brinds = []
 
 
-print("Brandlar:")
-total_phones = len(phones)
-for brand, count in brand_counts.items():
-    foiz = (count / total_phones) * 100
-    print(f"- {brand} telefonlar: {count} ta {foiz:.1f}%")
+list_years = []
 
-print("\nYillar (2000-2025):")
-for year in range(2000, 2026):
-    count = year_counts.get(year, 0)
-    foiz = (count / total_phones) * 100
-    print(f"- {year} yilda: {count} ta {foiz:.1f}%")
+for element in phones:
+    list_brinds.append(element["brand"])
+    list_years.append(element["date"])
 
-end_time = time.time()
+print("Hisobot:")
+print("- Brandlar:")
+for element in set(list_brinds):
+    count = list_brinds.count(element)
+    print("     - {} telefonlari: {} ta {}%".format(element, count, count * 100 / len(list_brinds)))
 
-print(f"\nHisoblashga ketgan vaqt: {end_time - start_time:.5f} soniya")
+
+print("- Yillar (2000-2025):")
+for element in set(list_years):
+    for i in range(6):
+        if i + 2000 == element:        
+            count = list_years.count(element)
+            print("     - {} yilda: {} ta {}%".format(element, count, count * 100 / len(list_years)))
+
+time_end = time.time() - start_time
+
+print("soniya - {} da ishlab berdi".format(round(time_end, 3)))

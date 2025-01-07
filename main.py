@@ -20,13 +20,11 @@ for user in users[1:]:
     if user["yosh"] > eng_katta["yosh"]:
         eng_katta = user
 
-puli = float(input("Pul miqdorini kiriting (so'mda): "))
+puli = float(input("kiriting: "))
 
-
-print("\nMeva narxlari va qancha sotib olish mumkin:")
 for meva in mevalar:
-    miqdor = puli // meva["narx"]  # Nechta sotib olish mumkin
+    miqdor = puli // meva["narx"] 
     print(f"- {meva['nomi']} ({meva['yetishtiruvchi']}): {miqdor:.0f} dona")
 
 
-print(f"\nEng katta yoshdagi odam: {eng_katta['ism']}, yoshi {eng_katta['yosh']}da.")
+print(f"\nYoshi katta: {eng_katta['ism']}, Yoshi {eng_katta['yosh']}da.")

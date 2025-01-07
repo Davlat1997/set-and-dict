@@ -1,3 +1,6 @@
+import time
+from collections import Counter
+
 phones = [{"brand":"Samsung","model":"Samsung A777","date":2008},
 {"brand":"Huawei","model":"Huawei MediaPad T1 10","date":2015},
 {"brand":"Nokia","model":"Nokia 110 (2019)","date":2019},
@@ -999,17 +1002,25 @@ phones = [{"brand":"Samsung","model":"Samsung A777","date":2008},
 {"brand":"Emporia","model":"Emporia Connect","date":2012},
 {"brand":"Motorola","model":"Motorola Moto G9 (India)","date":2020}]
 
-# code yozing
-# natija quyidagicha chiqsin
-"""
-Hisobot:
-- Brandlar:
-    - Samsung telefonlar: 300 ta 30%i
-    - Motorolla telefonlar: 150 ta 15%i
-    ....
-- Yillar (2000-2025):
-    - 2000 yilda: 20 ta 2%i
-    - 2001 yilda: 40 ta 4%i
-    - 2002 yilda: 70 ta 7%i
-    ....
-"""
+start_time = time.time()
+
+brand_counts = Counter(phone["brand"] for phone in phones)
+
+year_counts = Counter(phone["date"] for phone in phones)
+
+
+print("Brandlar:")
+total_phones = len(phones)
+for brand, count in brand_counts.items():
+    foiz = (count / total_phones) * 100
+    print(f"- {brand} telefonlar: {count} ta {foiz:.1f}%")
+
+print("\nYillar (2000-2025):")
+for year in range(2000, 2026):
+    count = year_counts.get(year, 0)
+    foiz = (count / total_phones) * 100
+    print(f"- {year} yilda: {count} ta {foiz:.1f}%")
+
+end_time = time.time()
+
+print(f"\nHisoblashga ketgan vaqt: {end_time - start_time:.5f} soniya")
